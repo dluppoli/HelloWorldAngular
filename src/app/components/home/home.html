@@ -1,0 +1,11 @@
+<div class="d-flex flex-wrap justify-content-center gap-4 py-5">
+    <div *ngFor="let product of products?.products" class="card">
+    <img [src]="product.thumbnail" class="card-img-top m-1" [alt]="product.title">
+    <div class="card-body d-flex flex-column my-1">
+        <h5 class="card-title">{{product.title}}</h5>
+        <p class="card-text text-end">{{product.price}}€</p>
+        <a href="/products" class="btn btn-primary">Acquista</a>
+    </div>
+    </div>
+</div>
+<p class="text-center mb-5">Sono stati trovati {{products?.total}} prodotti</p>
