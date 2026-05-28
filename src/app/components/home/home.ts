@@ -3,6 +3,7 @@ import { ProductsService } from '../../services/products-service';
 import { CommonModule } from '@angular/common';
 import { ProductsResults } from '../../models/products-results';
 import { ProductCard } from "../product-card/product-card";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -14,7 +15,10 @@ export class Home {
 
   products : ProductsResults | undefined
 
-  constructor(private productsService:ProductsService, private cd:ChangeDetectorRef)
+  constructor(private productsService:ProductsService, 
+              private cd:ChangeDetectorRef,
+              private router:Router
+            )
   {
     this.productsService.getAll().subscribe(
       r => {
@@ -22,5 +26,10 @@ export class Home {
         cd.detectChanges()
       }
     )
+  }
+
+  goToProduct(id:number)
+  {
+    this.router.navigate(['products',id])
   }
 }

@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ProductsResults } from '../models/products-results';
+import { ProductDetail } from '../models/ProductDetail';
+import { Observable } from 'rxjs/internal/Observable';
 
 @Injectable({
   providedIn: 'root',
@@ -12,6 +14,11 @@ export class ProductsService {
   getAll()
   {
     return this.http.get<ProductsResults>('https://dummyjson.com/products/category/smartphones?select=title,price,thumbnail')
+  }
+
+  getOne(id:number): Observable<ProductDetail>
+  {
+    return this.http.get<ProductDetail>(`https://dummyjson.com/products/${id}?select=title,price,thumbnail,images,reviews`)
   }
 
 }

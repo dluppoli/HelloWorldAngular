@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Product } from '../../models/Product';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -11,4 +11,10 @@ import { CommonModule } from '@angular/common';
 })
 export class ProductCard {
   @Input() product: Product | undefined
+  @Output() buttonClicked = new EventEmitter()
+
+  public _buttonClicked()
+  {
+    this.buttonClicked.emit(this.product?.id)
+  }
 }
