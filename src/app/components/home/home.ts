@@ -2,10 +2,11 @@ import { ChangeDetectorRef, Component } from '@angular/core';
 import { ProductsService } from '../../services/products-service';
 import { CommonModule } from '@angular/common';
 import { ProductsResults } from '../../models/products-results';
+import { RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-home',
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })
