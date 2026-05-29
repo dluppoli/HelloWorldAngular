@@ -3,10 +3,11 @@ import { ProductsService } from '../../services/products-service';
 import { ProductDetail } from '../../models/ProductDetail';
 import { CommonModule } from '@angular/common';
 import { ProductInCart } from '../../models/ProductInCart';
+import { RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-carrello',
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './carrello.html',
   styleUrl: './carrello.css',
 })
