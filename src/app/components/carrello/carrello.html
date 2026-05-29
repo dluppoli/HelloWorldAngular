@@ -1,0 +1,28 @@
+<h2>Carrello</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Img</th>
+            <th>Prodotto</th>
+            <th>Prezzo</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let p of carrello">
+            <td><img [src]="p.thumbnail" [alt]="p.title"></td>
+            <td>{{p.title}}</td>
+            <td>{{p.price}} €</td>
+            <td></td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <td></td>
+            <td></td>
+            <td><b>{{prezzoTotale}} €</b></td>
+            <td></td>
+        </tr>
+    </tfoot>
+</table>

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { ProductsResults } from '../models/products-results';
 import { ProductDetail } from '../models/ProductDetail';
 import { Observable } from 'rxjs/internal/Observable';
+import { Product } from '../models/Product';
 
 @Injectable({
   providedIn: 'root',
@@ -10,6 +11,8 @@ import { Observable } from 'rxjs/internal/Observable';
 export class ProductsService {
 
   constructor(private http:HttpClient){}
+
+  private cart: ProductDetail[] = []
 
   getAll()
   {
@@ -19,6 +22,21 @@ export class ProductsService {
   getOne(id:number): Observable<ProductDetail>
   {
     return this.http.get<ProductDetail>(`https://dummyjson.com/products/${id}?select=title,price,thumbnail,images,reviews`)
+  }
+
+  addToCart(p:ProductDetail)
+  {
+    this.cart.push(p)  
+  }
+
+  getCartCount()
+  {
+    return this.cart.length
+  }
+
+  getAllCart()
+  {
+    return this.cart
   }
 
 }

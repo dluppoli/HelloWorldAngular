@@ -1,0 +1,23 @@
+import { Component } from '@angular/core';
+import { ProductsService } from '../../services/products-service';
+import { ProductDetail } from '../../models/ProductDetail';
+import { CommonModule } from '@angular/common';
+
+@Component({
+  selector: 'app-carrello',
+  imports: [CommonModule],
+  templateUrl: './carrello.html',
+  styleUrl: './carrello.css',
+})
+export class Carrello {
+  carrello:ProductDetail[]
+  constructor(private productsService:ProductsService)
+  {
+    this.carrello =  this.productsService.getAllCart()
+  }
+
+  get prezzoTotale()
+  {
+    return this.carrello.reduce( (somma,prodotto) => somma + prodotto.price, 0 )
+  }
+}

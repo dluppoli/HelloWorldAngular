@@ -25,6 +25,7 @@ export class Product {
 
   public addToCart()
   {
-    console.log('Elemento aggiunto al carrello')
+    if(this.product)
+      this.productService.addToCart(this.product)
   }
 }
