@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ProductsService } from '../../services/products-service';
 import { ProductDetail } from '../../models/ProductDetail';
 import { CommonModule } from '@angular/common';
+import { ProductInCart } from '../../models/ProductInCart';
 
 @Component({
   selector: 'app-carrello',
@@ -10,14 +11,14 @@ import { CommonModule } from '@angular/common';
   styleUrl: './carrello.css',
 })
 export class Carrello {
-  carrello:ProductDetail[]
-  constructor(private productsService:ProductsService)
+  carrello:ProductInCart[]
+  constructor(public productsService:ProductsService)
   {
     this.carrello =  this.productsService.getAllCart()
   }
 
   get prezzoTotale()
   {
-    return this.carrello.reduce( (somma,prodotto) => somma + prodotto.price, 0 )
+    return this.carrello.reduce( (somma,prodotto) => somma + prodotto.price*prodotto.qta, 0 )
   }
 }

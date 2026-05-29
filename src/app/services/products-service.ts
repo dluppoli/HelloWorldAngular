@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { ProductsResults } from '../models/products-results';
 import { ProductDetail } from '../models/ProductDetail';
 import { Observable } from 'rxjs/internal/Observable';
-import { Product } from '../models/Product';
+import { ProductInCart } from '../models/ProductInCart';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +12,7 @@ export class ProductsService {
 
   constructor(private http:HttpClient){}
 
-  private cart: ProductDetail[] = []
+  private cart: ProductInCart[] = []
 
   getAll()
   {
@@ -26,12 +26,16 @@ export class ProductsService {
 
   addToCart(p:ProductDetail)
   {
-    this.cart.push(p)  
+    let candidate = this.cart.find(e => e.id == p.id)  
+    if(candidate)
+      candidate.qta++
+    else
+      this.cart.push( new ProductInCart(p))
   }
 
   getCartCount()
   {
-    return this.cart.length
+    return this.cart.reduce( (somma,prodotto) => somma+prodotto.qta,0 )
   }
 
   getAllCart()
@@ -39,4 +43,18 @@ export class ProductsService {
     return this.cart
   }
 
+  removeFromCart(i:number)
+  {
+    this.cart.splice(i,1)
+  }
+
+  removeFromCart2(p:ProductDetail)
+  {
+    this.cart = this.cart.filter(e => e.id != p.id)
+  }
+
+  /*changeQty()
+  {
+
+  }*/
 }

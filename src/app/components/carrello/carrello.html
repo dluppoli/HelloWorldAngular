@@ -5,20 +5,30 @@
         <tr>
             <th>Img</th>
             <th>Prodotto</th>
-            <th>Prezzo</th>
+            <th>Prezzo Unitario</th>
+            <th>Qta</th>
+            <th>Prezzo Totale</th>
             <th>Actions</th>
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let p of carrello">
+        <tr *ngFor="let p of carrello; index as i">
             <td><img [src]="p.thumbnail" [alt]="p.title"></td>
             <td>{{p.title}}</td>
             <td>{{p.price}} €</td>
-            <td></td>
+            <td>{{p.qta}}</td>
+            <td>{{p.price * p.qta}} €</td>
+            <td>
+                <i class="bi bi-plus-circle" (click)="p.addQuantity(1)"></i>
+                <i class="bi bi-dash-circle" (click)="p.addQuantity(-1)"></i>
+                <i class="bi bi-trash text-danger" (click)="productsService.removeFromCart(i)"></i>
+            </td>
         </tr>
     </tbody>
     <tfoot>
         <tr>
+            <td></td>
+            <td></td>
             <td></td>
             <td></td>
             <td><b>{{prezzoTotale}} €</b></td>
